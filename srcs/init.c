@@ -6,7 +6,7 @@
 /*   By: yohasega <yohasega@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 15:20:19 by yohasega          #+#    #+#             */
-/*   Updated: 2024/11/24 22:20:05 by yohasega         ###   ########.fr       */
+/*   Updated: 2024/11/26 16:00:21 by yohasega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,13 @@ static void	setup(t_data *data)
 	data->file = NULL;
 	i = 0;
 	while (i < 5)
-		data->texture_paths[i++] = NULL;
+	{
+		data->texture_paths[i] = NULL;
+		// mlx txtr
+		data->textures[i].image.img = NULL;
+		data->textures[i].image.addr = NULL; // なくてもいい
+		i++;
+	}
 	// ft_memset(data->floor_rgb, 0, sizeof(data->ceiling_rgb) / sizeof(int));
 	// ft_memset(data->ceiling_rgb, 0, sizeof(data->ceiling_rgb) / sizeof(int));
 	data->floor_rgb[0] = -1;
@@ -36,11 +42,13 @@ static void	setup(t_data *data)
 	data->player.array_pos.x = -1;
 	data->player.array_pos.y = -1;
 
-	// mlx
+	// mlx win
 	data->graphic.mlx = NULL;
 	data->graphic.win = NULL;
 	data->graphic.image.img = NULL;
 	data->graphic.image.addr = NULL;
+
+	data->show_minimap = false;
 }
 
 static void	get_content(t_data *data, int fd, int counter)
@@ -83,9 +91,8 @@ void	set_data_from_file(t_data *data, char **file)
 	i = 0;
 	while (file[i])
 	{
-		replace_str(file[i], "\f\n\r\t\v", ' ');
-		// replace_str(file[i], "\f\r\t\v", ' ');
-		// replace_str(file[i], "\n", '\0');
+		replace_str(file[i], "\f\r\t\v", ' ');
+		replace_str(file[i], "\n", '\0');
 		i++;
 	}
 	// 設定情報をdataに取得
@@ -112,4 +119,7 @@ void	init_data(t_data *data, char *filepath)
 	get_file_contents(data, filepath);
 	// ファイルの中身をdataに格納
 	set_data_from_file(data, data->file);
+
+	print_map(data); // =========== test ===========
+	print_info(data); //=========== test ===========
 }

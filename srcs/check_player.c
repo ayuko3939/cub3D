@@ -6,7 +6,7 @@
 /*   By: yohasega <yohasega@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 20:10:48 by yohasega          #+#    #+#             */
-/*   Updated: 2024/11/24 15:00:38 by yohasega         ###   ########.fr       */
+/*   Updated: 2024/11/26 14:55:58 by yohasega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,29 +72,29 @@ void	set_player_info(t_data *data, int y, int x, char **map)
 
 void	check_player(t_data *data, char **map)
 {
-	int	i;
-	int	j;
+	int	y;
+	int	x;
 	int	player_found;
 
-	i = 0;
+	y = 0;
 	player_found = 0;
-	while (map[i])
+	while (map[y])
 	{
-		j = 0;
-		while (map[i][j])
+		x = 0;
+		while (map[y][x])
 		{
 			// プレイヤーを見つけたらプレイヤー情報を取得
-			if (ft_strchr("NSEW", map[i][j]))
+			if (ft_strchr("NSEW", map[y][x]))
 			{
 				// プレイヤーが複数人いたらエラー
 				if (player_found)
 					exit_error("Some players on map!", data);
 				player_found = 1;
-				set_player_info(data, i, j, map);
+				set_player_info(data, y, x, map);
 			}
-			j++;
+			x++;
 		}
-		i++;
+		y++;
 	}
 	// プレイヤーが一人もいなかったらエラー
 	if (!player_found)
