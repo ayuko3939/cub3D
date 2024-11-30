@@ -6,7 +6,7 @@
 /*   By: yohasega <yohasega@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 21:00:44 by yohasega          #+#    #+#             */
-/*   Updated: 2024/11/26 15:51:47 by yohasega         ###   ########.fr       */
+/*   Updated: 2024/11/30 18:18:45 by yohasega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ static int	flood_fill(t_data *data, char **map, int y, int x)
 
 	// 4方向に探索を広げる
 	if (flood_fill(data, map, y, x + 1) || flood_fill(data, map, y + 1, x)
-	 || flood_fill(data, map, y, x - 1) || flood_fill(data, map, y - 1, x))
+	 || flood_fill(data, map, y, x - 1) || flood_fill(data, map, y - 1, x)
+	 || flood_fill(data, map, y + 1, x + 1) || flood_fill(data, map, y - 1, x + 1)
+	 || flood_fill(data, map, y + 1, x - 1) || flood_fill(data, map, y - 1, x - 1))
 		return (EXIT_FAILURE);
 	// 問題なければ正常終了
 	return (EXIT_SUCCESS);

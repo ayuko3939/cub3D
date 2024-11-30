@@ -6,7 +6,7 @@
 /*   By: yohasega <yohasega@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 15:20:19 by yohasega          #+#    #+#             */
-/*   Updated: 2024/11/26 16:00:21 by yohasega         ###   ########.fr       */
+/*   Updated: 2024/11/30 18:26:34 by yohasega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	setup(t_data *data)
 		data->texture_paths[i] = NULL;
 		// mlx txtr
 		data->textures[i].image.img = NULL;
-		data->textures[i].image.addr = NULL; // なくてもいい
+		// data->textures[i].image.addr = NULL; // なくてもいい
 		i++;
 	}
 	// ft_memset(data->floor_rgb, 0, sizeof(data->ceiling_rgb) / sizeof(int));
@@ -38,15 +38,14 @@ static void	setup(t_data *data)
 	data->rows = 0;
 	data->columns = 0;
 
-	// なくてもいい
-	data->player.array_pos.x = -1;
-	data->player.array_pos.y = -1;
+	// data->player.array_pos.x = -1; // なくてもいい
+	// data->player.array_pos.y = -1; // なくてもいい
 
 	// mlx win
 	data->graphic.mlx = NULL;
 	data->graphic.win = NULL;
 	data->graphic.image.img = NULL;
-	data->graphic.image.addr = NULL;
+	// data->graphic.image.addr = NULL; // なくてもいい
 
 	data->show_minimap = false;
 }
@@ -120,6 +119,6 @@ void	init_data(t_data *data, char *filepath)
 	// ファイルの中身をdataに格納
 	set_data_from_file(data, data->file);
 
-	print_map(data); // =========== test ===========
-	print_info(data); //=========== test ===========
+	// print_map(data); // =========== test ===========
+	// print_info(data); //=========== test ===========
 }
