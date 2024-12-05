@@ -6,7 +6,7 @@
 /*   By: yohasega <yohasega@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 15:33:16 by yohasega          #+#    #+#             */
-/*   Updated: 2024/11/26 15:33:42 by yohasega         ###   ########.fr       */
+/*   Updated: 2024/12/05 15:43:59 by yohasega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@ static void	create_new_image(t_data *data, t_window *g)
 	g->image.img = mlx_new_image(g->mlx, WIDTH, HEIGHT);
 	if (g->image.img == NULL)
 		exit_error("error : mlx_new_image", data);
-
 	// イメージのメモリアドレスを取得
-	g->image.addr = mlx_get_data_addr(g->image.img, &g->image.bits_per_pixel, &g->image.line_size, &g->image.endian);
+	g->image.addr = mlx_get_data_addr(g->image.img, &g->image.bits_per_pixel,
+			&g->image.line_size, &g->image.endian);
 }
 
 void	rendering(t_data *data)
 {
 	t_window	*graphic;
-	
+
 	graphic = &data->graphic;
 	// レイ配列の確保（画面の幅分のレイを生成）
 	data->rays = (t_ray *)malloc(sizeof(t_ray) * WIDTH);
@@ -49,5 +49,6 @@ void	rendering(t_data *data)
 	// レイ配列の解放
 	free(data->rays);
 	// イメージをウィンドウに配置する
-	mlx_put_image_to_window(graphic->mlx, graphic->win, graphic->image.img, 0, 0);
+	mlx_put_image_to_window(graphic->mlx, graphic->win, graphic->image.img, 0,
+		0);
 }

@@ -6,7 +6,7 @@
 /*   By: yohasega <yohasega@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 22:30:11 by yohasega          #+#    #+#             */
-/*   Updated: 2024/11/25 22:56:09 by yohasega         ###   ########.fr       */
+/*   Updated: 2024/12/05 15:39:32 by yohasega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ int	check_wall(int pos_y, int pos_x, char **map)
 static bool	check_hit_wall(int pos_y, int poy_x, char **map)
 {
 	// 移動予定先（体の中心、体の幅（前後左右）が壁に当たらないかを確認して、どれか1つでも当たれば1を返す）
-	return (check_wall(pos_y, poy_x, map) ||
-			check_wall(pos_y - (PLYLEN / 2), poy_x - (PLYLEN / 2), map) ||
-			check_wall(pos_y - (PLYLEN / 2), poy_x + (PLYLEN / 2), map) ||
-			check_wall(pos_y + (PLYLEN / 2), poy_x - (PLYLEN / 2), map) ||
-			check_wall(pos_y + (PLYLEN / 2), poy_x + (PLYLEN / 2), map));
+	return (check_wall(pos_y, poy_x, map)
+		|| check_wall(pos_y - (PLYLEN / 2), poy_x - (PLYLEN / 2), map)
+		|| check_wall(pos_y - (PLYLEN / 2), poy_x + (PLYLEN / 2), map)
+		|| check_wall(pos_y + (PLYLEN / 2), poy_x - (PLYLEN / 2), map)
+		|| check_wall(pos_y + (PLYLEN / 2), poy_x + (PLYLEN / 2), map));
 }
 
 void	move_player(t_player *p, double dir_y, double dir_x, char **map)

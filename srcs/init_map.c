@@ -6,7 +6,7 @@
 /*   By: yohasega <yohasega@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 16:54:58 by yohasega          #+#    #+#             */
-/*   Updated: 2024/11/26 16:04:46 by yohasega         ###   ########.fr       */
+/*   Updated: 2024/12/05 15:47:03 by yohasega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int	get_map_columns(char **file)
 {
 	int	columns;
-	
+
 	columns = 0;
 	while (file && *file)
 	{

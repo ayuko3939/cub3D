@@ -6,7 +6,7 @@
 /*   By: yohasega <yohasega@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 15:30:04 by yohasega          #+#    #+#             */
-/*   Updated: 2024/11/26 15:32:52 by yohasega         ###   ########.fr       */
+/*   Updated: 2024/12/02 15:53:38 by yohasega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ static void	free_data(t_data *data)
 		free_all(data->file);
 	if (data->map)
 		free_all(data->map);
-	
 	// mlx
 	if (data->graphic.image.img)
 		mlx_destroy_image(data->graphic.mlx, data->graphic.image.img);

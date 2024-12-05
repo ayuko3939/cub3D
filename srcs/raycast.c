@@ -6,7 +6,7 @@
 /*   By: yohasega <yohasega@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 20:46:13 by yohasega          #+#    #+#             */
-/*   Updated: 2024/11/26 16:50:54 by yohasega         ###   ########.fr       */
+/*   Updated: 2024/12/05 16:02:45 by yohasega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,18 +50,30 @@ static void	wall_point(t_ray *ray)
 		ray->wall_hit_point = (int)ray->vct.x % PX;
 }
 
+static void	setup_ray(t_ray *ray)
+{
+	ray->vct.x = 0;			// なくてもいい
+	ray->vct.y = 0;			// なくてもいい
+	ray->next_grid.x = 0;	// なくてもいい
+	ray->next_grid.y = 0;	// なくてもいい
+	ray->direction.x = 0;	// なくてもいい
+	ray->direction.y = 0;	// なくてもいい
+	ray->angle = 0;			// なくてもいい
+	ray->distance = 0;
+	ray->hit_wall = 0;
+	ray->wall_dir = NONE;
+	ray->wall_hit_point = 0;
+	ray->wall_height = 0;	// なくてもいい
+}
+
 static void	castray(t_data *data, t_ray *ray, t_player *player, double angle)
 {
 	int	hit_flag;
 
 	hit_flag = 0;
 	// レイの初期化
-	ray->distance = 0;
-	ray->wall_dir = NONE;
-	ray->hit_wall = 0;
-	ray->wall_hit_point = 0;
+	setup_ray(ray);
 	// 光線の開始位置をプレイヤー位置に設定
-	// ここがおかしそう　by trt
 	ray->vct.y = player->position.y;
 	ray->vct.x = player->position.x;
 	ray->angle = angle;
@@ -75,7 +87,8 @@ static void	castray(t_data *data, t_ray *ray, t_player *player, double angle)
 		ray->next_grid.y = next_grid_distance_y(ray->vct.y, angle);
 		ray->next_grid.x = next_grid_distance_x(ray->vct.x, angle);
 		// レイを次のグリッドラインまで進める
-		increment_ray_length(ray,  get_y_step(ray->next_grid.y, ray->angle), get_x_step(ray->next_grid.x, ray->angle));
+		increment_ray_length(ray, get_y_step(ray->next_grid.y, ray->angle),
+			get_x_step(ray->next_grid.x, ray->angle));
 		// 壁との衝突判定（ループを抜ける）
 		if (check_wall(ray->vct.y, ray->vct.x, data->map))
 		{

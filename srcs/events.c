@@ -6,7 +6,7 @@
 /*   By: yohasega <yohasega@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 16:57:56 by yohasega          #+#    #+#             */
-/*   Updated: 2024/11/26 15:51:28 by yohasega         ###   ########.fr       */
+/*   Updated: 2024/12/05 15:35:19 by yohasega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static void	handle_right_angle(t_player *p)
 static void	minimap_swich(t_data *data)
 {
 	// ミニマップの表示・非表示を反転させる
-	data->show_minimap = !data->show_minimap;	
+	data->show_minimap = !data->show_minimap;
 }
 
 int	key_press(int key, t_data *data)

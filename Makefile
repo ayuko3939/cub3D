@@ -25,6 +25,7 @@ SRCS = main.c \
 	   movement.c \
 	   raycast.c \
 	   render.c \
+	   setup.c \
 	   utils.c \
 	   gnl/get_next_line.c \
 	   gnl/get_next_line_utils.c \

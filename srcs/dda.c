@@ -6,7 +6,7 @@
 /*   By: yohasega <yohasega@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 18:26:57 by yohasega          #+#    #+#             */
-/*   Updated: 2024/11/25 19:41:59 by yohasega         ###   ########.fr       */
+/*   Updated: 2024/12/05 15:35:59 by yohasega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ double	get_y_step(int opose, double angle)
 	int		int_angle;
 	int		angle_0;
 	int		angle_180;
-	
+
 	distance = 0;
 	// 角度の精度を高めるため、大きな数を掛ける
 	int_angle = (double)(angle * 10000000);
@@ -107,7 +107,7 @@ double	get_x_step(int adj, double angle)
 	int		int_angle;
 	int		angle_90;
 	int		angle_270;
-	
+
 	distance = 0;
 	// 角度の精度を高めるため、大きな数を掛ける
 	int_angle = (double)(angle * 10000000) - 1;

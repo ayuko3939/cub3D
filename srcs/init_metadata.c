@@ -6,7 +6,7 @@
 /*   By: yohasega <yohasega@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 15:55:59 by yohasega          #+#    #+#             */
-/*   Updated: 2024/11/23 20:17:35 by yohasega         ###   ########.fr       */
+/*   Updated: 2024/12/02 14:08:03 by yohasega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ void	set_metadata(t_data *data, char ***file)
 		(*file)++;
 		// メタデータの設定が終わったら処理終了
 		if (strarr_size(data->texture_paths) == 4
-			&& data->ceiling_rgb[0] != -1 && data->floor_rgb[0] != -1)
+			&& data->ceiling_rgb[2] != -1 && data->floor_rgb[2] != -1)
 			break ;
 	}
 }

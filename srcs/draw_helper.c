@@ -6,7 +6,7 @@
 /*   By: yohasega <yohasega@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 21:49:03 by yohasega          #+#    #+#             */
-/*   Updated: 2024/11/26 15:01:37 by yohasega         ###   ########.fr       */
+/*   Updated: 2024/12/05 15:36:51 by yohasega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	get_texture_color(t_data *data, int y, int offset_x, t_ray ray)
 	dist_to_top = y + (ray.wall_height / 2) - (HEIGHT / 2);
 	offset.y = (dist_to_top * ((double)txtr.height / ray.wall_height));
 	// テクスチャの色を取得
-	color = *(unsigned int *)(txtr.image.addr + (offset.y * txtr.image.line_size + offset.x * (txtr.image.bits_per_pixel / 8)));
+	color = *(unsigned int *)(txtr.image.addr + (offset.y * txtr.image.line_size
+				+ offset.x * (txtr.image.bits_per_pixel / 8)));
 	return (color);
 }

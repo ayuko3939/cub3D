@@ -1,0 +1,11 @@
+# test2.cub - 不正なRGB値
+NO ./textures/NO.xpm
+SO ./textures/SO.xpm
+WE ./textures/WE.xpm
+EA ./textures/EA.xpm
+F 20,100,256    # 256は無効な値（0-255の範囲外）
+C 225,30,0
+
+111
+1N1
+111

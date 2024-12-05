@@ -6,54 +6,18 @@
 /*   By: yohasega <yohasega@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 15:20:19 by yohasega          #+#    #+#             */
-/*   Updated: 2024/11/30 18:26:34 by yohasega         ###   ########.fr       */
+/*   Updated: 2024/12/05 15:07:10 by yohasega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	setup(t_data *data)
-{
-	int	i;
-
-	data->file = NULL;
-	i = 0;
-	while (i < 5)
-	{
-		data->texture_paths[i] = NULL;
-		// mlx txtr
-		data->textures[i].image.img = NULL;
-		// data->textures[i].image.addr = NULL; // なくてもいい
-		i++;
-	}
-	// ft_memset(data->floor_rgb, 0, sizeof(data->ceiling_rgb) / sizeof(int));
-	// ft_memset(data->ceiling_rgb, 0, sizeof(data->ceiling_rgb) / sizeof(int));
-	data->floor_rgb[0] = -1;
-	data->floor_rgb[1] = -1;
-	data->floor_rgb[2] = -1;
-	data->ceiling_rgb[0] = -1;
-	data->ceiling_rgb[1] = -1;
-	data->ceiling_rgb[2] = -1;
-	data->map = NULL;
-	data->rows = 0;
-	data->columns = 0;
-
-	// data->player.array_pos.x = -1; // なくてもいい
-	// data->player.array_pos.y = -1; // なくてもいい
-
-	// mlx win
-	data->graphic.mlx = NULL;
-	data->graphic.win = NULL;
-	data->graphic.image.img = NULL;
-	// data->graphic.image.addr = NULL; // なくてもいい
-
-	data->show_minimap = false;
-}
-
 static void	get_content(t_data *data, int fd, int counter)
 {
 	char	*line;
 
+	if (counter < 0)
+		exit_error("Invalid file!", data);
 	line = get_next_line(fd);
 	// 行を取得できれば、もう一度行を読み込む
 	if (line)
@@ -63,11 +27,17 @@ static void	get_content(t_data *data, int fd, int counter)
 		exit_error("Invalid file!", data);
 	// 行を取得できない（２回目〜）はファイルの終端なので配列の準備
 	else
+	{
 		data->file = (char **)malloc(sizeof(char *) * (counter + 1));
-	if (!data->file)
-		exit_error("error : malloc", data);
+		if (!data->file)
+		{
+			free(line);
+			exit_error("error : malloc", data);
+		}
+		data->file[counter] = NULL;
+	}
 	// メモリを確保できれば行を配列にセットする
-	else
+	if (data->file)
 		data->file[counter] = line;
 }
 

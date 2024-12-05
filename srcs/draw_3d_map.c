@@ -6,13 +6,14 @@
 /*   By: yohasega <yohasega@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 21:48:18 by yohasega          #+#    #+#             */
-/*   Updated: 2024/11/26 14:59:37 by yohasega         ###   ########.fr       */
+/*   Updated: 2024/12/05 15:45:50 by yohasega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	draw_wall_column(t_data *data, t_ray ray, t_vct_int start, int end_y)
+static void	draw_wall_column(t_data *data, t_ray ray, t_vct_int start,
+		int end_y)
 {
 	int	color;
 	int	y;
@@ -53,6 +54,7 @@ void	draw_walls(t_data *data, t_ray *rays)
 		x++;
 	}
 }
+
 static int	rgb_to_int(int r, int g, int b)
 {
 	return (r << 16 | g << 8 | b);
@@ -81,9 +83,11 @@ void	draw_floor_and_ceiling(t_data *data)
 	int	color;
 
 	// 天井のRGB値を整数値に変換して描画
-	color = rgb_to_int(data->ceiling_rgb[0], data->ceiling_rgb[1], data->ceiling_rgb[2]);
+	color = rgb_to_int(data->ceiling_rgb[0], data->ceiling_rgb[1],
+			data->ceiling_rgb[2]);
 	color_fill(data, 0, HEIGHT / 2, color);
 	// 床のRGB値を整数値に変換して描画
-	color = rgb_to_int(data->floor_rgb[0], data->floor_rgb[1], data->floor_rgb[2]);
+	color = rgb_to_int(data->floor_rgb[0], data->floor_rgb[1],
+			data->floor_rgb[2]);
 	color_fill(data, HEIGHT / 2, HEIGHT, color);
 }
