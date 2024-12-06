@@ -6,7 +6,7 @@
 /*   By: yohasega <yohasega@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 22:58:27 by yohasega          #+#    #+#             */
-/*   Updated: 2024/12/05 16:06:37 by yohasega         ###   ########.fr       */
+/*   Updated: 2024/12/05 16:23:53 by yohasega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,12 @@ static void	draw_grid(t_data *data)
 			cell = data->map[y][x];
 			// セルが壁なら黒色で四角く塗りつぶす
 			if (cell == '1' || cell == ' ')
-				draw_square(data, x * data->minimap_scale, y
-					* data->minimap_scale, BLACK);
+				draw_square(data, x * data->minimap_scale,
+					y * data->minimap_scale, BLACK);
 			// セルが床なら灰色で四角く塗りつぶす
 			else if (cell == '0' || ft_strchr("NSWE", cell))
-				draw_square(data, x * data->minimap_scale, y
-					* data->minimap_scale, LIGHT_GREY);
+				draw_square(data, x * data->minimap_scale,
+					y * data->minimap_scale, LIGHT_GREY);
 			x++;
 		}
 		y++;

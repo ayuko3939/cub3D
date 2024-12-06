@@ -1,4 +1,3 @@
-# test1.cub - 存在しないテクスチャファイル
 NO ./not_exist/NO.xpm
 SO ./textures/SO.xpm
 WE ./textures/WE.xpm

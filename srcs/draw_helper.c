@@ -6,18 +6,18 @@
 /*   By: yohasega <yohasega@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 21:49:03 by yohasega          #+#    #+#             */
-/*   Updated: 2024/12/05 15:36:51 by yohasega         ###   ########.fr       */
+/*   Updated: 2024/12/05 16:59:00 by yohasega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	image_pixel_put(t_image *data, int x, int y, int color)
+void	image_pixel_put(t_image *img, int x, int y, int color)
 {
-	char	*dst;
+	char	*pixcel;
 
-	dst = data->addr + (y * data->line_size + x * (data->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
+	pixcel = img->addr + (y * img->line_size + x * (img->bits_per_pixel / 8));
+	*(unsigned int *)pixcel = color;
 }
 
 int	get_texture_color(t_data *data, int y, int offset_x, t_ray ray)

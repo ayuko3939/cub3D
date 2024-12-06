@@ -6,7 +6,7 @@
 /*   By: yohasega <yohasega@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:06:08 by yohasega          #+#    #+#             */
-/*   Updated: 2024/12/05 15:10:40 by yohasega         ###   ########.fr       */
+/*   Updated: 2024/12/05 16:57:17 by yohasega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,86 +64,85 @@
 
 enum		e_direction
 {
-	UNDEFINED = -1, // 未設定
-	NORTH,          // 北
-	SOUTH,          // 南
-	WEST,           // 西
-	EAST,           // 東
-	NONE            // なし
+	NORTH,	// 北
+	SOUTH,	// 南
+	WEST,	// 西
+	EAST,	// 東
+	NONE	// なし
 };
 
 typedef struct s_vector
 {
-	double	x;
-	double	y;
-}			t_vector;
+	double		x;
+	double		y;
+}				t_vector;
 
 typedef struct s_vct_int
 {
-	int		x;
-	int		y;
-}			t_vct_int;
+	int			x;
+	int			y;
+}				t_vct_int;
 
 typedef struct s_player
 {
-	t_vector position;   // 現在位置 (x, y座標)
-	t_vct_int array_pos; // 現在位置 (x, y座標) map配列の探索用にintの値を格納
-	t_vector direction;  // 向きベクトル (x, y座標)
-	double angle;        // 向きの角度 (ラジアン単位)
-}			t_player;
+	t_vector	position;	// 現在位置 (x, y座標)
+	t_vct_int	array_pos;	// 現在位置 (x, y座標) map配列の探索用にintの値を格納
+	t_vector	direction;	// 向きベクトル (x, y座標)
+	double		angle;		// 向きの角度 (ラジアン単位)
+}				t_player;
 
 typedef struct s_ray
 {
-	t_vector vct;          // 現在のY座標
-	t_vector next_grid;    // 次のグリッドラインまでの距離
-	t_vector direction;    // レイの進行方向ベクトル
-	double angle;          // レイの角度（ラジアン）
-	double distance;       // 壁に当たるまでの距離
-	int hit_wall;          // 垂直な壁に衝突したかを示すフラグ（1: 垂直、0: 水平）
-	int wall_dir;          // 衝突した壁のテクスチャID(e_direction)
-	double wall_hit_point; // 衝突した壁の位置（テクスチャ座標の計算に使用）
-	int wall_height;       // レイの結果として計算された壁の高さ
-}			t_ray;
+	t_vector	vct;			// 現在のY座標
+	t_vector	next_grid;		// 次のグリッドラインまでの距離
+	t_vector	direction;		// レイの進行方向ベクトル
+	double		angle;			// レイの角度（ラジアン）
+	double		distance;		// 壁に当たるまでの距離
+	int			hit_wall;		// 垂直な壁に衝突したかを示すフラグ（1: 垂直、0: 水平）
+	int			wall_dir;		// 衝突した壁のテクスチャID(e_direction)
+	double		wall_hit_point; // 衝突した壁の位置（テクスチャ座標の計算に使用）
+	int			wall_height;	// レイの結果として計算された壁の高さ
+}				t_ray;
 
 typedef struct s_image
 {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_size;
-	int		endian;
-}			t_image;
+	void		*img;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_size;
+	int			endian;
+}				t_image;
 
 typedef struct s_texture
 {
-	t_image	image;
-	int		width;
-	int		height;
-}			t_texture;
+	t_image		image;
+	int			width;
+	int			height;
+}				t_texture;
 
 typedef struct s_window
 {
-	void	*mlx;
-	void	*win;
-	t_image	image;
-}			t_window;
+	void		*mlx;
+	void		*win;
+	t_image		image;
+}				t_window;
 
 typedef struct s_data
 {
-	char **file;            //.cubファイルの中身
-	char *texture_paths[5]; // テクスチャファイルパス 5つ目はNULL
-	int floor_rgb[3];       // 床の色（RGB）
-	int ceiling_rgb[3];     // 天井の色（RGB）
-	char **map;             // マップデータ（2D配列）
-	int rows;               // マップの行数
-	int columns;            // マップの列数
-	t_player player;        // プレイヤー情報
-	t_window graphic;       // mlx関連（ウィンドウ、イメージ）
-	t_texture textures[5];  // mlx関連（テクスチャ）
-	t_ray *rays;            // mlx関連（レイキャスティング）
-	bool show_minimap;      // ミニマップ表示フラグ
-	int minimap_scale;      // ミニマップのスケール
-}			t_data;
+	char		**file;				//.cubファイルの中身
+	char		*texture_paths[5];	// テクスチャファイルパス 5つ目はNULL
+	int			floor_rgb[3];		// 床の色（RGB）
+	int			ceiling_rgb[3];		// 天井の色（RGB）
+	char		**map;				// マップデータ（2D配列）
+	int			rows;				// マップの行数
+	int			columns;			// マップの列数
+	t_player	player;				// プレイヤー情報
+	t_window	graphic;			// mlx関連（ウィンドウ、イメージ）
+	t_texture	textures[5];		// mlx関連（テクスチャ）
+	t_ray		*rays;				// mlx関連（レイキャスティング）
+	bool		show_minimap;		// ミニマップ表示フラグ
+	int			minimap_scale;		// ミニマップのスケール
+}				t_data;
 
 void		check_map(t_data *data);
 void		set_player_info(t_data *data, int y, int x, char **map);
@@ -155,7 +154,7 @@ double		get_x_step(int adj, double angle);
 void		increment_ray_length(t_ray *ray, double step_y, double step_x);
 void		draw_walls(t_data *data, t_ray *rays);
 void		draw_floor_and_ceiling(t_data *data);
-void		image_pixel_put(t_image *data, int x, int y, int color);
+void		image_pixel_put(t_image *img, int x, int y, int color);
 int			get_texture_color(t_data *data, int y, int offset_x, t_ray ray);
 void		draw_minimap(t_data *data, t_window *graphic);
 int			key_press(int key, t_data *data);

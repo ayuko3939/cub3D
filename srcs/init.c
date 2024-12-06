@@ -6,7 +6,7 @@
 /*   By: yohasega <yohasega@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 15:20:19 by yohasega          #+#    #+#             */
-/*   Updated: 2024/12/05 15:07:10 by yohasega         ###   ########.fr       */
+/*   Updated: 2024/12/05 16:30:24 by yohasega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	set_data_from_file(t_data *data, char **file)
 	}
 	// 設定情報をdataに取得
 	set_metadata(data, &file);
-	// // 不要な行をとばす
+	// 不要な行をとばす
 	while (file && *file && is_str_type(*file, ft_isspace))
 		file++;
 	if (!*file)

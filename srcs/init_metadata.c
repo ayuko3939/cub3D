@@ -6,7 +6,7 @@
 /*   By: yohasega <yohasega@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 15:55:59 by yohasega          #+#    #+#             */
-/*   Updated: 2024/12/02 14:08:03 by yohasega         ###   ########.fr       */
+/*   Updated: 2024/12/06 15:26:44 by yohasega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,19 @@ static int	handle_metadata(t_data *data, char **splited)
 		return (set_texture_path(data, WEST, splited[1]));
 	else if (!ft_strcmp(splited[0], "EA"))
 		return (set_texture_path(data, EAST, splited[1]));
-	// 天井 / 床の行ならRGBを確認
+	// 天井 / 床の行ならRGBを確認、もし設定済みならエラー表示
 	else if (!ft_strcmp(splited[0], "C"))
+	{
+		if (data->ceiling_rgb[2] != -1)
+			exit_error("Invalid rgb!", data);
 		return (set_rgb(data->ceiling_rgb, splited[1]));
+	}
 	else if (!ft_strcmp(splited[0], "F"))
+	{
+		if (data->floor_rgb[2] != -1)
+			exit_error("Invalid rgb!", data);
 		return (set_rgb(data->floor_rgb, splited[1]));
+	}
 	// 空白行 / マップなら何もしない
 	return (EXIT_SUCCESS);
 }

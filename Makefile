@@ -2,8 +2,8 @@
 NAME = cub3D
 
 # COMPILER SETTINGS
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
 LIBX_FLAGS = -L$(MLX_PATH) -lmlx -lXext -lX11 -lm -O3
 
 # SOURCE FILES
@@ -47,6 +47,7 @@ SRCS = main.c \
 # MINILIBX CONFIGURATION
 MLX_PATH	=	minilibx-linux/
 MLX_NAME	=	libmlx.a
+MLX_HEADER	=   $(MLX_PATH)/mlx.h
 MLX			=	$(MLX_PATH)$(MLX_NAME)
 
 # OBJECT FILES
@@ -74,11 +75,13 @@ $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)/libft
 	@mkdir -p $(OBJ_DIR)/gnl
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(MLX_HEADER) | $(OBJ_DIR) 
 	@$(CC) $(CFLAGS) $(INCS) -c $< -o $@
 
 # BUILD MINILIBX
 $(MLX):
+	@git submodule init
+	@git submodule update
 	$(MAKE) -C $(MLX_PATH)
 
 clean:
